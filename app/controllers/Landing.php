@@ -2,7 +2,7 @@
 
 use Symfony\Component\Console\Tests\Descriptor\ObjectsProvider;
 
-class HomeController extends BaseController {
+class Landing extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -17,10 +17,10 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function show()
 	{
         $this->hello="Hi!";
-		return View::make('hello')->with('slon', $this);
+		return View::make('landing')->with('d', $this);
 	}
 
 }
