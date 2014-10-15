@@ -18,6 +18,7 @@
 <div class="container">
 	<!-- BEGIN CONTAINER -->
 	<div class="page-container">
+        @include("common.sidebar")
 		<!-- BEGIN CONTENT -->
 		<div class="page-content-wrapper">
 			<div class="page-content">
