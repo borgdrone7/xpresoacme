@@ -6,7 +6,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-<title>{{$d->hello}}</title>
+<title>{{$d->title}}</title>
 @include("common.styles")
 </head>
 <!-- END HEAD -->
@@ -18,7 +18,7 @@
 <div class="container">
 	<!-- BEGIN CONTAINER -->
 	<div class="page-container">
-        @include("common.sidebar")
+        {{ $d->showMenu() }}
 		<!-- BEGIN CONTENT -->
 		<div class="page-content-wrapper">
 			<div class="page-content">

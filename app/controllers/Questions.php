@@ -1,7 +1,8 @@
 <?php
+
 use Symfony\Component\Console\Tests\Descriptor\ObjectsProvider;
 
-class Landing extends BaseController implements iMenu {
+class Questions extends BaseController implements iMenu {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -19,21 +20,11 @@ class Landing extends BaseController implements iMenu {
     public function showMenu()
     {
         $menu=array();
-
-        $questions=new MenuItem("Questions", "icon-question");
-        $questions->addSubmenu(new MenuItem("Add question"));
-        $questions->addSubmenu(new MenuItem("List questions", "icon-star", URL::route('questions')));
-
-        $menu[]=new MenuItem("Landing page", "icon-home", URL::route('landing'));
-        $menu[]=$questions;
-        $menu[]=new MenuItem("Stats", "icon-bar-chart");
-
         return View::make('common.sidebar')->with('menu', $menu);
     }
-	public function show()
-	{
-        $this->title="Xpreso ACME landing page";
-		return View::make('landing')->with('d', $this);
-	}
+    public function listQuestions()
+    {
+        return View::make('landing')->with('d', $this);
+    }
 
 }
