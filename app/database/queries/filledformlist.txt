@@ -1,0 +1,16 @@
+select 
+filledforms.id as uniquecode, name, question, COALESCE(value, num, text, date) as result
+from 
+filledforms,
+questions,
+users,
+filledformslines
+left join
+metas
+on (meta_id=metas.id)
+where
+users.id=filledforms.user_id
+and
+filledforms.id=filledformslines.filledform_id
+and
+filledformslines.question_id=questions.id
