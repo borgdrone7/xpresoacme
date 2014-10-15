@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\Console\Tests\Descriptor\ObjectsProvider;
+
 class HomeController extends BaseController {
 
 	/*
@@ -17,7 +19,8 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		return View::make('hello');
+        $this->hello="Hi!";
+		return View::make('hello')->with('slon', $this);
 	}
 
 }

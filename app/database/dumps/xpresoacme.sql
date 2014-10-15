@@ -16,95 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `filledforms`
+-- Table structure for table `formlines`
 --
 
-DROP TABLE IF EXISTS `filledforms`;
+DROP TABLE IF EXISTS `formlines`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `filledforms` (
+CREATE TABLE `formlines` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `form_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `user_id` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `FK_filledforms_users` (`user_id`),
-  KEY `FK_filledforms_forms` (`form_id`),
-  CONSTRAINT `FK_filledforms_forms` FOREIGN KEY (`form_id`) REFERENCES `forms` (`id`),
-  CONSTRAINT `FK_filledforms_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `filledforms`
---
-
-LOCK TABLES `filledforms` WRITE;
-/*!40000 ALTER TABLE `filledforms` DISABLE KEYS */;
-INSERT INTO `filledforms` VALUES (1,1,1);
-/*!40000 ALTER TABLE `filledforms` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `filledformslines`
---
-
-DROP TABLE IF EXISTS `filledformslines`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `filledformslines` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `filledform_id` int(10) unsigned NOT NULL DEFAULT '0',
   `question_id` int(10) unsigned NOT NULL DEFAULT '0',
   `meta_id` int(10) unsigned DEFAULT NULL,
   `num` float unsigned DEFAULT NULL,
   `text` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `filledformid_questionid` (`filledform_id`,`question_id`),
+  UNIQUE KEY `filledformid_questionid` (`form_id`,`question_id`),
   KEY `FK_filledformslines_answerstructmetas` (`meta_id`),
   KEY `FK_filledformslines_questions` (`question_id`),
-  CONSTRAINT `FK_filledformslines_filledforms` FOREIGN KEY (`filledform_id`) REFERENCES `filledforms` (`id`),
+  CONSTRAINT `FK_filledformslines_filledforms` FOREIGN KEY (`form_id`) REFERENCES `forms` (`id`),
   CONSTRAINT `FK_filledformslines_questions` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filledformslines`
+-- Dumping data for table `formlines`
 --
 
-LOCK TABLES `filledformslines` WRITE;
-/*!40000 ALTER TABLE `filledformslines` DISABLE KEYS */;
-INSERT INTO `filledformslines` VALUES (1,1,1,2,NULL,NULL,NULL),(2,1,2,NULL,NULL,'Amir Cicak',NULL),(3,1,3,NULL,NULL,NULL,'1977-07-26'),(4,1,4,4,NULL,NULL,NULL),(5,1,5,12,NULL,NULL,NULL),(6,1,6,14,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `filledformslines` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `formquestions`
---
-
-DROP TABLE IF EXISTS `formquestions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `formquestions` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `form_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `question_id` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `formid_questionid` (`form_id`,`question_id`),
-  KEY `FK_formquestions_questions` (`question_id`),
-  CONSTRAINT `FK_formquestions_forms` FOREIGN KEY (`form_id`) REFERENCES `forms` (`id`),
-  CONSTRAINT `FK_formquestions_questions` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formquestions`
---
-
-LOCK TABLES `formquestions` WRITE;
-/*!40000 ALTER TABLE `formquestions` DISABLE KEYS */;
-INSERT INTO `formquestions` VALUES (1,1,1),(2,1,2),(4,1,3),(5,1,4),(6,1,5),(7,1,6);
-/*!40000 ALTER TABLE `formquestions` ENABLE KEYS */;
+LOCK TABLES `formlines` WRITE;
+/*!40000 ALTER TABLE `formlines` DISABLE KEYS */;
+INSERT INTO `formlines` VALUES (1,1,1,2,NULL,NULL,NULL),(2,1,2,NULL,NULL,'Amir Cicak',NULL),(3,1,3,NULL,NULL,NULL,'1977-07-26'),(4,1,4,4,NULL,NULL,NULL),(5,1,5,12,NULL,NULL,NULL),(6,1,6,14,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `formlines` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -116,8 +58,10 @@ DROP TABLE IF EXISTS `forms`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `forms` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `FK_filledforms_users` (`user_id`),
+  CONSTRAINT `FK_filledforms_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -127,7 +71,7 @@ CREATE TABLE `forms` (
 
 LOCK TABLES `forms` WRITE;
 /*!40000 ALTER TABLE `forms` DISABLE KEYS */;
-INSERT INTO `forms` VALUES (1,'Visa application');
+INSERT INTO `forms` VALUES (1,1);
 /*!40000 ALTER TABLE `forms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,4 +192,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-15 13:52:49
+-- Dump completed on 2014-10-15 17:39:01
