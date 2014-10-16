@@ -12,7 +12,7 @@
 <link href="{{ URL::asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
-<!--<link href="{{ URL::asset('assets/global/css/components.css') }}') }}" rel="stylesheet" type="text/css"/>-->
+<link href="{{ URL::asset('assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ URL::asset('assets/global/css/plugins.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ URL::asset('assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
 <link id="style_color" href="{{ URL::asset('assets/admin/layout/css/themes/default.css') }}" rel="stylesheet" type="text/css"/>
