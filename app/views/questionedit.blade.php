@@ -19,7 +19,6 @@
     <div class="col-md-12">
         <h2>Edit question</h2>
         <br/>
-        {{ $d->q->question }}
     </div>
     <div class="col-md-12">
         @include("questionedit_form")
