@@ -6,7 +6,7 @@
 <!-- BEGIN SIDEBAR MENU -->
 <ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">
     @foreach ($menu as $m)
-        <li class="">
+        <li class="{{ $m->class }}">
             <a href="{{ $m->url }}">
                 <i class="{{ $m->icon }}"></i>
                 <span class="title">{{ $m->title }}</span>
@@ -17,7 +17,7 @@
             @if ($m->isSub())
                 <ul class="sub-menu">
                     @foreach ($m->submenus as $sm)
-                    <li>
+                    <li class="{{ $sm->class }}">
                         <a href="{{ $sm->url }}">
                             {{ $sm->title }}
                         </a>

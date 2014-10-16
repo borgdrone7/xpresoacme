@@ -7,6 +7,8 @@
  */
 
 class MenuItem {
+    public $key;
+    public $class;
     public $title;
     public $url;
     public $icon;
@@ -16,11 +18,12 @@ class MenuItem {
         return count($this->submenus);
     }
     public function addSubmenu($menuitem) {
-        $this->submenus[]=$menuitem;
+        $this->submenus[$menuitem->key]=$menuitem;
     }
-    public function __construct($title, $icon="", $url="javascript:;") {
+    public function __construct($key, $title, $icon="", $url="javascript:;") {
         $this->url=$url;
         $this->title=$title;
         $this->icon=$icon;
+        $this->key=$key;
     }
 } 

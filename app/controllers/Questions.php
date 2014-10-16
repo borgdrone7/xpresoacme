@@ -1,30 +1,17 @@
 <?php
 
-use Symfony\Component\Console\Tests\Descriptor\ObjectsProvider;
-
-class Questions extends BaseController implements iMenu {
-
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
+class Questions extends AcmeController implements iMenu {
 
     public function showMenu()
     {
-        $menu=array();
-        return View::make('common.sidebar')->with('menu', $menu);
+        return View::make('common.sidebar')->with('menu', MenuBuilder::getAdminMenu(ADMIN_MENU::LIST_QUESTION));
     }
     public function listQuestions()
     {
         return View::make('landing')->with('d', $this);
+    }
+    public function __construct() {
+        $this->title="Xpreso ACME questions page";
     }
 
 }
