@@ -19,6 +19,12 @@ class QuestionEdit extends AcmeController implements iMenu {
         $this->q=$q;
         return View::make('questionedit')->with('d', $this);
     }
+    public function addQuestion()
+    {
+        $q=new Question();
+        $this->q=$q;
+        return View::make('questionedit')->with('d', $this);
+    }
     public function __construct() {
         $this->title="Edit question - Xpreso ACME";
     }
