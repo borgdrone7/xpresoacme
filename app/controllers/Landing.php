@@ -10,7 +10,7 @@ class Landing extends AcmeController implements iMenu {
 		return View::make('landing')->with('d', $this);
 	}
     public function __construct() {
-        $this->title="Xpreso ACME landing page";
+        $this->title="Welcome to Xpreso ACME";
     }
 
 }

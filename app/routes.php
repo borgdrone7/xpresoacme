@@ -13,3 +13,4 @@
 
 Route::get('/', array('as' => 'landing', 'uses' => 'Landing@show'));
 Route::get('/questions', array('as' => 'questions', 'uses' => 'Questions@listQuestions'));
+Route::get('/questionedit/{id}', array('as' => 'questionedit', 'uses' => 'QuestionEdit@editQuestion'));

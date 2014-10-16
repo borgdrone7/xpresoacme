@@ -11,7 +11,7 @@ class MenuBuilder {
     public static function getAdminMenu($current) {
 
         $questions=new MenuItem(ADMIN_MENU::QUESTIONS, "Questions", "icon-question");
-        $questions->addSubmenu(new MenuItem(ADMIN_MENU::ADD_QUESTION, "Add question"));
+        $questions->addSubmenu(new MenuItem(ADMIN_MENU::ADD_QUESTION, "Add question", "icon-star", URL::route('questionedit')));
         $questions->addSubmenu(new MenuItem(ADMIN_MENU::LIST_QUESTION, "List questions", "icon-star", URL::route('questions')));
 
         $menu=[];

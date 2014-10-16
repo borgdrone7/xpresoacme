@@ -49,7 +49,7 @@
                                 {{ $q->required ? "Yes":"no" }}
                             </td>
                             <td>
-                                <a href="#" class="btn default btn-xs purple">
+                                <a href="{{ URL::route('questionedit', $q->id) }}" class="btn default btn-xs purple">
                                     <i class="fa fa-edit"></i> Edit </a>
                             </td>
                         </tr>
