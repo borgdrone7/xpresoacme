@@ -12,7 +12,9 @@ class Questions extends AcmeController implements iMenu {
         return View::make('questions')->with('d', $this);
     }
     public function __construct() {
+        AcmeController::__construct();
         $this->title="Questions list -Xpreso ACME";
+        $this->title_small="list questions";
     }
 
 }

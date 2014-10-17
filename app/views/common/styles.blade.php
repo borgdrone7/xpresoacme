@@ -11,6 +11,9 @@
 <link href="{{ URL::asset('assets/global/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ URL::asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
+
+@yield('pagelevelstyles', '<-- no page level styles -->')
+
 <!-- BEGIN THEME STYLES -->
 <link href="{{ URL::asset('assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ URL::asset('assets/global/css/plugins.css') }}" rel="stylesheet" type="text/css"/>

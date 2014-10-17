@@ -9,7 +9,9 @@ use Symfony\Component\Console\Tests\Descriptor\ObjectsProvider;
 
 class AcmeController extends BaseController {
     public $title;
-    public function __construct($name, $title) {
-        $this->title=$title;
+    public $title_small;
+    public function __construct() {
+        $this->title='Title not set';
+        $this->title_small='small title not set';
     }
-} 
+}

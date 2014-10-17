@@ -1,19 +1,13 @@
 @extends("common.layout")
 
+@section("pagelevelstyles")
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/global/plugins/select2/select2.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"/>
+<!-- END PAGE LEVEL STYLES -->
+@stop
+
 @section("content")
-
-<!-- BEGIN PAGE HEADER-->
-<div class="row">
-    <div class="col-md-12">
-        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-        <h3 class="page-title">
-            XPRESO ACME <small>add/edit question</small>
-        </h3>
-        <!-- END PAGE TITLE & BREADCRUMB-->
-    </div>
-</div>
-<!-- END PAGE HEADER-->
-
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
     <div class="col-md-12">
@@ -25,5 +19,4 @@
     </div>
 </div>
 <!-- END PAGE CONTENT-->
-
 @stop

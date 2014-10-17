@@ -10,7 +10,9 @@ class Landing extends AcmeController implements iMenu {
 		return View::make('landing')->with('d', $this);
 	}
     public function __construct() {
+        AcmeController::__construct();
         $this->title="Welcome to Xpreso ACME";
+        $this->title_small="questionnaire app";
     }
 
 }
