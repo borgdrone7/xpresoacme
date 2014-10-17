@@ -13,7 +13,7 @@
             </div>
             <div class="portlet-body">
                 <div class="table-scrollable">
-                    <table class="table table-hover">
+                    <table class="table table-striped table-hover">
                         <thead>
                         <tr>
                             <th>
@@ -49,7 +49,7 @@
                                 {{ $q->required ? "Yes":"no" }}
                             </td>
                             <td>
-                                <a href="{{ URL::route('questionedit', $q->id) }}" class="btn default btn-xs purple">
+                                <a href="{{ URL::route('questionedit', $q->id) }}" class="btn default btn-xs red">
                                     <i class="fa fa-edit"></i> Edit </a>
                             </td>
                         </tr>

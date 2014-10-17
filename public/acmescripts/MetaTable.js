@@ -28,7 +28,35 @@ var meta_table = function (table_id, add_button_id, meta_value_id) {
         });
 
         button.on('click', function (e) {
-            datatable.row.add([value.val(), "<a class='delete' href='javascript:;'>Delete</a>"]).draw();
+            var metaerror=$("#metaerror");
+            metaerror.hide();
+            var valueToAdd=$.trim(value.val());
+            //check if entered value is empty
+            if(valueToAdd=="") {
+                $("#metaerrortext").text("Please enter a value.");
+                metaerror.show();
+                return;
+            }
+            var alreadyThere=0;
+            //check if value is already inserted
+            datatable
+                .column( 0 )
+                .data()
+                .each( function ( value, index ) {
+                    if(valueToAdd==value) {
+                        alreadyThere=1;
+                    }
+                } );
+            if(alreadyThere) {
+                $("#metaerrortext").text("Meta values must be unique.");
+                metaerror.show();
+                return;
+            }
+
+            //add the value
+            datatable.row.add([value.val(), "<a class='delete' href='javascript:;'>Delete</a>"]).draw(); //TODO: move this hardcoded html in separate file and load this JS as view,
+                                                                                                         //including this delete html code with @include
+            //reset text input
             value.val('');
         });
         table.on('click', '.delete', function (e) {

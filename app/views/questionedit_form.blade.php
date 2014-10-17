@@ -30,11 +30,11 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Answer type</label>
                     <div class="col-md-9">
-                        {{ Form::select('questiontype', Questiontype::orderBy('name', 'asc')->lists('name', 'id'), (empty($d->q->id) ? null:$d->q->questiontype->id), array('class' => 'form-control')) }}
+                        {{ Form::select('questiontype', Questiontype::orderBy('name', 'asc')->lists('name', 'id'), (empty($d->q->id) ? null:$d->q->questiontype->id), array('class' => 'form-control', 'id' => 'questiontype')) }}
                         <span class="help-block">Please select answer type. If you select option or drop down, you will also need to add meta data. </span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="metacontainer">
                     <label class="col-md-3 control-label">Meta data</label>
                     <div class="col-md-9">
                         @include("questionedit_metatable")
@@ -43,8 +43,8 @@
                 </div>
             </div>
             <div class="form-actions fluid">
-                <div class="col-md-offset-3 col-md-9">
-                    <a class="btn green">Submit</a>
+                <div class="col-md-offset-9 col-md-3">
+                    <a class="btn red">Submit</a>
                     <a href="{{ URL::route('questions') }}" class="btn default">Cancel</a>
                 </div>
             </div>

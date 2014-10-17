@@ -8,6 +8,17 @@
 <script>
     jQuery(document).ready(function() {
         meta_table("metatable", "addmetavalue", "metadatavalue");
+        show_meta();
+        $("#metaerror").hide();
     });
+    $("#questiontype").change(function () {
+        show_meta();
+    });
+    function show_meta() {
+        var current=$("#questiontype option:selected").text();
+        var visible=(current=='Radio' || current=='Drop down');
+        var container=$("#metacontainer");
+        visible ? container.show():container.hide();
+    }
 </script>
 <!-- END PAGE LEVEL SCRIPTS -->

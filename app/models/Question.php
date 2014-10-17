@@ -11,4 +11,8 @@ class Question extends Eloquent {
     {
         return $this->belongsTo('Questiontype');
     }
-} 
+    public function metas()
+    {
+        return $this->hasMany('Meta');
+    }
+}
