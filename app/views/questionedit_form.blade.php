@@ -19,6 +19,15 @@
                     </div>
                 </div>
                 <div class="form-group">
+                        <label class="col-md-3 control-label">Status</label>
+                        <div class="col-md-9">
+                            <div class="checkbox">
+                                <label>{{ Form::checkbox('required', 'required', $d->q->required) }} Required?</label>
+                                <span class="help-block">Is this question mandatory. </span>
+                            </div>
+                        </div>
+                </div>
+                <div class="form-group">
                     <label class="col-md-3 control-label">Answer type</label>
                     <div class="col-md-9">
                         {{ Form::select('questiontype', Questiontype::orderBy('name', 'asc')->lists('name', 'id'), (empty($d->q->id) ? null:$d->q->questiontype->id), array('class' => 'form-control')) }}
@@ -26,13 +35,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="checkbox">
-                        <label class="col-md-offset-3 col-md-9 control-label"></label>
-                        <div class="col-md-offset-3 col-md-9">
-
-                            <label>{{ Form::checkbox('required', 'required', $d->q->required) }} Required?</label>
-                            <span class="help-block">Is this question mandatory. </span>
-                        </div>
+                    <label class="col-md-3 control-label">Meta data</label>
+                    <div class="col-md-9">
+                        @include("questionedit_metatable")
+                        <span class="help-block">Please add associated meta data. Upon clicking save below, all entered data will be saved.</span>
                     </div>
                 </div>
             </div>

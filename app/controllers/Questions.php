@@ -14,7 +14,7 @@ class Questions extends AcmeController implements iMenu {
     public function __construct() {
         AcmeController::__construct();
         $this->title="Questions list -Xpreso ACME";
-        $this->title_small="list questions";
+        $this->title_small="Questions list, use edit link to edit the question";
     }
 
 }

@@ -40,6 +40,7 @@
     @include("common.footer")
 </div>
 @include("common.scripts")
+@yield("pagelevelscripts", '<!-- no page level scripts -->')
 </body>
 <!-- END BODY -->
 </html>
