@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Redirect;
+
 class UserLogin extends AcmeController implements iMenu {
 
     public function showMenu()
@@ -7,11 +10,27 @@ class UserLogin extends AcmeController implements iMenu {
     }
     public function show()
     {
+        $u=new User();
+        $u->name="Amir Cicak";
+        $u->login="borg";
+        $u->password=Hash::make('abc');
+        //$u->save();
+
         return View::make('user_login')->with('d', $this);
     }
-    public function check()
+    public function attempt()
     {
-        return View::make('user_login')->with('d', $this);
+        if (Auth::attempt(array('login' => Input::get("login"), 'password' => Input::get("password"))))
+        {
+            return Redirect::intended('user');
+        } else {
+            return View::make('user_login')->with('d', $this);
+        }
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return Redirect::route("user landing");
     }
     public function __construct() {
         AcmeController::__construct();

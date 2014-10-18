@@ -24,5 +24,5 @@ Route::get('/user/form', array('as' => 'user form', 'uses' => 'Questions@listQue
 Route::get('/user/view', array('as' => 'user view', 'uses' => 'QuestionEdit@addQuestion'));
 Route::get('/user/reset', array('as' => 'user reset', 'uses' => 'QuestionEdit@editQuestion'));
 Route::get('/user/login', array('as' => 'login', 'uses' => 'UserLogin@show'));
-Route::get('/user/login', array('as' => 'logincheck', 'uses' => 'UserLogin@check'));
-Route::post('/user/logout', array('as' => 'logout', 'uses' => 'QuestionEdit@saveQuestion'));
+Route::post('/user/login', array('as' => 'login attempt', 'uses' => 'UserLogin@attempt'));
+Route::get('/user/logout', array('as' => 'logout', 'uses' => 'UserLogin@logout'));

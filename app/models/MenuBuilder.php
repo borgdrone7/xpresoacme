@@ -33,7 +33,7 @@ class MenuBuilder {
         $menu[]=new MenuItem(USER_MENU::QUESTIONNAIRE, "Questionnaire", "icon-docs", URL::route('user form'));
         $menu[]=new MenuItem(USER_MENU::RESULTS, "View questionnaire result", "icon-list", URL::route('user view'));
         $menu[]=new MenuItem(USER_MENU::RESET, "Reset questionnaire", "icon-trash", URL::route('user reset'));
-        if(Session::get("user")=="") {
+        if(!Auth::check()) {
             $menu[]=new MenuItem(USER_MENU::LOGIN, "Login", "icon-login", URL::route('login'));
         } else {
             $menu[]=new MenuItem(USER_MENU::LOGOUT, "Logout", "icon-logout", URL::route('logout'));
