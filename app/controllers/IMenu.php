@@ -13,6 +13,7 @@ class ADMIN_MENU
     const ADD_QUESTION = "Questions add";
     const LIST_QUESTION = "Questions list";
     const STATS = "Stats";
+    const USERLANDING = "User Landing";
 }
 class USER_MENU
 {

@@ -20,6 +20,7 @@ class MenuBuilder {
         $menu[]=new MenuItem(ADMIN_MENU::LANDING, "Landing page", "icon-home", URL::route('landing'));
         $menu[]=$questions;
         $menu[]=new MenuItem(ADMIN_MENU::STATS, "Stats", "icon-bar-chart");
+        $menu[]=new MenuItem(ADMIN_MENU::USERLANDING, "Users panel", "icon-user", URL::route('user landing')); //TODO: we can avoid last param by using USER_MENU::LANDING in routes to define name
 
         self::selectMenu($menu, $current);
 
