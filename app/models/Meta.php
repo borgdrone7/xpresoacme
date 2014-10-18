@@ -7,4 +7,5 @@
  */
 
 class Meta extends Eloquent {
+    public $timestamps = false;
 }

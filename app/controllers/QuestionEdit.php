@@ -19,7 +19,12 @@ class QuestionEdit extends AcmeController implements iMenu {
             $q=Question::find($id);
         }
         $q->question=Input::get("question");
-        var_dump(Input::all());
+        $q->questiontype_id=Input::get("questiontype");
+        $q->required=(Input::get("required")=="required") ? 1:0;
+        $q->save();
+
+        //now do the meta data
+        
     }
     public function addQuestion()
     {

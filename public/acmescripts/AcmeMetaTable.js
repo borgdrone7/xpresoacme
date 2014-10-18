@@ -14,6 +14,7 @@
         metaval_id: "#metadatavalue",
         metaerror_id: "#metaerror",
         metaerrortext_id: "#metaerrortext",
+        hiddenfield_id: "#metavals",
         datatable: null
     };
 //constructor
@@ -32,6 +33,7 @@
             this.metaval = $(this.settings.metaval_id);
             this.metaerror = $(this.settings.metaerror_id);
             this.metaerrortext = $(this.settings.metaerrortext_id);
+            this.hiddenfield=$(this.settings.hiddenfield_id);
 
             this.datatable = this.table.DataTable({
                 "lengthMenu": false,
@@ -48,10 +50,11 @@
                 "searching": false,
                 "lengthChange": false
             });
-            this.metaerror.hide();
             this.addbutton.on('click', $.proxy(this.add, this));
             var that=this;
             this.table.on('click', '.delete', function (e) { that.remove(that, this, e); });
+            this.metaerror.hide();
+            this.updatehidden();
             console.log(this._name + "(" + $(this.element).attr('id') + ") init complete");
         },
         add: function () {
@@ -88,7 +91,11 @@
         remove: function (pluginthis, deleteelement, e) {
             e.preventDefault();
             pluginthis.datatable.row( $(deleteelement).parents('tr') ).remove().draw();
+        },
+        updatehidden: function () {
+            this.hiddenfield.val(JSON.stringify(this.datatable.column(0).data().toArray()));
         }
+
     };
 // A really lightweight plugin wrapper around the constructor,
 // preventing against multiple instantiations

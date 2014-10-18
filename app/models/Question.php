@@ -7,6 +7,7 @@
  */
 
 class Question extends Eloquent {
+    public $timestamps = false;
     public function questiontype()
     {
         return $this->belongsTo('Questiontype');

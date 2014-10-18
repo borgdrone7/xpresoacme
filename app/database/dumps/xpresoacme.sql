@@ -127,7 +127,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (1,5,'Do you smoke?',1,0),(2,3,'What is your name?',1,0),(3,1,'When were you born?',1,0),(4,4,'Martial status?',1,0),(5,5,'Gender?',0,0),(6,4,'Nationality?',0,0);
+INSERT INTO `questions` VALUES (1,4,'Do you smoke?',1,0),(2,3,'What is your name?',1,0),(3,1,'When were you born?',1,0),(4,4,'Martial status?',1,0),(5,5,'Gender?',0,0),(6,4,'Nationality?',0,0);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +143,7 @@ CREATE TABLE `questiontypes` (
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,4 +192,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-15 17:39:01
+-- Dump completed on 2014-10-18 14:52:05

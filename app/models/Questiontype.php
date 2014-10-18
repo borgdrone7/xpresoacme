@@ -7,4 +7,5 @@
  */
 
 class Questiontype extends Eloquent {
+    public $timestamps = false;
 }
