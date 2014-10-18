@@ -14,10 +14,12 @@ class QuestionEdit extends AcmeController implements iMenu {
     }
     public function saveQuestion($id)
     {
-        $q=Question::find($id);
+        $q=new Question();
+        if($id>0) { //it is edit not save new, 0 is save new
+            $q=Question::find($id);
+        }
         $q->question=Input::get("question");
-        $this->q=$q;
-        return View::make('questionedit')->with('d', $this);
+        var_dump(Input::all());
     }
     public function addQuestion()
     {

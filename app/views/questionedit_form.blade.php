@@ -1,4 +1,4 @@
-<div class="portlet box red " xmlns="http://www.w3.org/1999/html">
+<div class="portlet box red " xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-gift"></i> Add/Edit question
@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="portlet-body form">
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" action="{{ URL::route('questionsave', empty($d->q->id) ? 0: $d->q->id) }}" method="post">
             <div class="form-body">
                 <div class="form-group">
                     <label class="col-md-3 control-label">Question text</label>
@@ -39,12 +39,13 @@
                     <div class="col-md-9">
                         @include("questionedit_metatable")
                         <span class="help-block">Please add associated meta data. Upon clicking save below, all entered data will be saved.</span>
+                        <input type="hidden" name="metavals" id="metavals" />
                     </div>
                 </div>
             </div>
             <div class="form-actions fluid">
                 <div class="col-md-offset-9 col-md-3">
-                    <a class="btn red">Submit</a>
+                    <input type="submit" class="btn red" value="Submit" />
                     <a href="{{ URL::route('questions') }}" class="btn default">Cancel</a>
                 </div>
             </div>

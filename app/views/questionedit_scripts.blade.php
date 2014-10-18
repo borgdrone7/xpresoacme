@@ -4,12 +4,19 @@
 <script type="text/javascript" src="{{ URL::asset('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="{{ URL::asset('acmescripts/MetaTable.js') }}"></script>
+<script src="{{ URL::asset('acmescripts/MetaTable1.js') }}"></script>
 <script>
     jQuery(document).ready(function() {
-        meta_table("metatable", "addmetavalue", "metadatavalue");
+        $(function() { $('#metatable').AcmeMetaTable(
+            {
+                table_id: "#metatable",
+                addbutton_id: "#addmetavalue",
+                metaval_id: "#metadatavalue",
+                metaerror_id: "#metaerror",
+                metaerrortext_id: "#metaerrortext"
+            }
+        );});
         show_meta();
-        $("#metaerror").hide();
     });
     $("#questiontype").change(function () {
         show_meta();
