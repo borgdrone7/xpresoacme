@@ -16,66 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `formlines`
---
-
-DROP TABLE IF EXISTS `formlines`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `formlines` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `form_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `question_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `meta_id` int(10) unsigned DEFAULT NULL,
-  `num` float unsigned DEFAULT NULL,
-  `text` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `filledformid_questionid` (`form_id`,`question_id`),
-  KEY `FK_filledformslines_answerstructmetas` (`meta_id`),
-  KEY `FK_filledformslines_questions` (`question_id`),
-  CONSTRAINT `FK_filledformslines_filledforms` FOREIGN KEY (`form_id`) REFERENCES `forms` (`id`),
-  CONSTRAINT `FK_filledformslines_questions` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `formlines`
---
-
-LOCK TABLES `formlines` WRITE;
-/*!40000 ALTER TABLE `formlines` DISABLE KEYS */;
-INSERT INTO `formlines` VALUES (1,1,1,2,NULL,NULL,NULL),(2,1,2,NULL,NULL,'Amir Cicak',NULL),(3,1,3,NULL,NULL,NULL,'1977-07-26'),(4,1,4,4,NULL,NULL,NULL),(5,1,5,12,NULL,NULL,NULL),(6,1,6,14,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `formlines` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `forms`
---
-
-DROP TABLE IF EXISTS `forms`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `forms` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `FK_filledforms_users` (`user_id`),
-  CONSTRAINT `FK_filledforms_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `forms`
---
-
-LOCK TABLES `forms` WRITE;
-/*!40000 ALTER TABLE `forms` DISABLE KEYS */;
-INSERT INTO `forms` VALUES (1,1);
-/*!40000 ALTER TABLE `forms` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `metas`
 --
 
@@ -89,7 +29,7 @@ CREATE TABLE `metas` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `question_id_value` (`question_id`,`value`),
   CONSTRAINT `FK_metas_questions` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +38,7 @@ CREATE TABLE `metas` (
 
 LOCK TABLES `metas` WRITE;
 /*!40000 ALTER TABLE `metas` DISABLE KEYS */;
-INSERT INTO `metas` VALUES (2,1,'No'),(1,1,'Yes'),(5,4,'In a relationship'),(4,4,'Married'),(3,4,'Single'),(13,5,'Female'),(12,5,'Male'),(6,5,'Prefer not to disclose'),(14,6,'Bosnian'),(8,6,'British'),(10,6,'French'),(7,6,'Irish'),(11,6,'Other'),(9,6,'Spanish');
+INSERT INTO `metas` VALUES (16,1,'No'),(17,1,'Yes'),(5,4,'In a relationship'),(4,4,'Married'),(3,4,'Single'),(13,5,'Female'),(12,5,'Male'),(6,5,'Prefer not to disclose'),(14,6,'Bosnian'),(8,6,'British'),(10,6,'French'),(7,6,'Irish'),(11,6,'Other'),(9,6,'Spanish');
 /*!40000 ALTER TABLE `metas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,6 +97,40 @@ INSERT INTO `questiontypes` VALUES (1,'Date'),(4,'Drop down'),(2,'Number'),(5,'R
 UNLOCK TABLES;
 
 --
+-- Table structure for table `useranswers`
+--
+
+DROP TABLE IF EXISTS `useranswers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `useranswers` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `question_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `meta_id` int(10) unsigned DEFAULT NULL,
+  `num` float unsigned DEFAULT NULL,
+  `text` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `filledformid_questionid` (`user_id`,`question_id`),
+  KEY `FK_filledformslines_answerstructmetas` (`meta_id`),
+  KEY `FK_filledformslines_questions` (`question_id`),
+  CONSTRAINT `FK_useranswers_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FK_filledformslines_questions` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `useranswers`
+--
+
+LOCK TABLES `useranswers` WRITE;
+/*!40000 ALTER TABLE `useranswers` DISABLE KEYS */;
+INSERT INTO `useranswers` VALUES (1,1,1,2,NULL,NULL,NULL),(2,1,2,NULL,NULL,'Amir Cicak',NULL),(3,1,3,NULL,NULL,NULL,'1977-07-26'),(4,1,4,4,NULL,NULL,NULL),(5,1,5,12,NULL,NULL,NULL),(6,1,6,14,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `useranswers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -167,10 +141,11 @@ CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `login` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `passMD5` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `remember_token` varchar(200) COLLATE utf8_unicode_ci DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +154,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Amir Cicak','borgdrone7','xyz');
+INSERT INTO `users` VALUES (1,'Amir Cicak','borg','$2y$10$4YkDE89c27JskNxysAW9VujC5euciBrI5ajRjkDhgv1LMpkpjYZtW','iGxewBMjWvDFQNj8zX3d9648HGOJMkqBWwY6JsuIlbsJf7KzFwbzbgYiFLTc');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -192,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-18 14:52:05
+-- Dump completed on 2014-10-18 20:36:53
