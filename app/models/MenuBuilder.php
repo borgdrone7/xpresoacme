@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Session;
+
 /**
  * Created by PhpStorm.
  * User: borgdrone7
@@ -18,6 +20,24 @@ class MenuBuilder {
         $menu[]=new MenuItem(ADMIN_MENU::LANDING, "Landing page", "icon-home", URL::route('landing'));
         $menu[]=$questions;
         $menu[]=new MenuItem(ADMIN_MENU::STATS, "Stats", "icon-bar-chart");
+
+        self::selectMenu($menu, $current);
+
+        return $menu;
+    }
+
+    public static function getUserMenu($current) {
+
+        $menu=[];
+        $menu[]=new MenuItem(USER_MENU::LANDING, "Landing page", "icon-home", URL::route('user landing')); //TODO: we can avoid last param by using USER_MENU::LANDING in routes to define name
+        $menu[]=new MenuItem(USER_MENU::QUESTIONNAIRE, "Questionnaire", "icon-docs", URL::route('user form'));
+        $menu[]=new MenuItem(USER_MENU::RESULTS, "View questionnaire result", "icon-list", URL::route('user view'));
+        $menu[]=new MenuItem(USER_MENU::RESET, "Reset questionnaire", "icon-trash", URL::route('user reset'));
+        if(Session::get("user")=="") {
+            $menu[]=new MenuItem(USER_MENU::LOGIN, "Login", "icon-login", URL::route('login'));
+        } else {
+            $menu[]=new MenuItem(USER_MENU::LOGOUT, "Logout", "icon-logout", URL::route('logout'));
+        }
 
         self::selectMenu($menu, $current);
 

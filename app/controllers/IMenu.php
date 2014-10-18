@@ -14,6 +14,15 @@ class ADMIN_MENU
     const LIST_QUESTION = "Questions list";
     const STATS = "Stats";
 }
+class USER_MENU
+{
+    const LANDING = "Landing";
+    const QUESTIONNAIRE = "Questionnaire";
+    const RESULTS = "View results";
+    const RESET = "Reset questionnaire";
+    const LOGIN = "Login";
+    const LOGOUT = "Logout";
+}
 
 interface iMenu
 {
