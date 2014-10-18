@@ -87,10 +87,12 @@
             //including this delete html code with @include
             //reset text input
             this.metaval.val('');
+            this.updatehidden();
         },
         remove: function (pluginthis, deleteelement, e) {
             e.preventDefault();
             pluginthis.datatable.row( $(deleteelement).parents('tr') ).remove().draw();
+            pluginthis.updatehidden();
         },
         updatehidden: function () {
             this.hiddenfield.val(JSON.stringify(this.datatable.column(0).data().toArray()));

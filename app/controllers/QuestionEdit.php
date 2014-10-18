@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Input;
+
 class QuestionEdit extends AcmeController implements iMenu {
 
     public function showMenu()
@@ -23,8 +25,21 @@ class QuestionEdit extends AcmeController implements iMenu {
         $q->required=(Input::get("required")=="required") ? 1:0;
         $q->save();
 
-        //now do the meta data
-        
+        //now do the meta data, note that I send closure to transaction because of $q
+        DB::transaction(function () use($q)
+        {
+            $q->metas()->delete();
+            $metavals = json_decode(Input::get("metavals"), true);
+            $metas=[];
+            foreach($metavals as $val) {
+                $new=new Meta();
+                $new->value=$val;
+                $metas[]=$new;
+            }
+            $q->metas()->saveMany($metas);
+        });
+
+        var_dump(Input::all());
     }
     public function addQuestion()
     {
