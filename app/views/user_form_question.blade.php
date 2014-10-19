@@ -13,19 +13,19 @@
                     <label class="control-label col-md-3" for="inputSuccess">Answer:</label>
                     <div class="col-md-4">
                         @if ($a->type() == QUESTION_TYPE::TEXT)
-                            {{ Form::text($a->cn(), $a->answer(), array('class' => 'form-control')) }}
+                            {{ Form::text($a->cn(), $a->answer(), array('class' => 'form-control', 'data-error-container' => '#'.$a->cn().'_error')) }}
                         @elseif ($a->type() == QUESTION_TYPE::NUMBER)
 <!--                        TODO:Add mask with jquery $("#mask_number").inputmask-->
-                            <input class="form-control" name="{{$a->cn()}}" value="{{$a->answer()}}">
+                            <input class="form-control" name="{{$a->cn()}}" value="{{$a->answer()}}" data-error-container="{{$a->cn()}}">
                         @elseif ($a->type() == QUESTION_TYPE::DATE)
-                            <input name="{{$a->cn()}}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="{{ $a->answer() }}">
+                            <input name="{{$a->cn()}}" class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="{{ $a->answer() }}" data-error-container="{{$a->cn()}}">
                         @elseif ($a->type() == QUESTION_TYPE::DROPDOWN)
-                            {{ Form::select($a->cn(), $a->metas_list(), $a->meta_id, array('class' => 'form-control')) }}
+                            {{ Form::select($a->cn(), $a->metas_list(), $a->meta_id, array('class' => 'form-control', 'data-error-container' => '#'.$a->cn().'_error')) }}
                         @elseif ($a->type() == QUESTION_TYPE::RADIO)
                             <div class="radio-list">
                                 @foreach($a->question->metas as $m)
                                 <label>
-                                    {{ Form::radio($a->cn(), $m->id, ($m->id==$a->meta_id) ? true:false) }}
+                                    {{ Form::radio($a->cn(), $m->id, ($m->id==$a->meta_id) ? true:false, array('data-error-container' => '#'.$a->cn().'_error')) }}
                                     {{$m->value}}
                                 </label>
                                 @endforeach
@@ -33,6 +33,8 @@
                         @else
                             Unknown question type!
                         @endif
+                        <div id="{{$a->cn()}}_error">
+                        </div>
                     </div>
                 </div>
             </div>

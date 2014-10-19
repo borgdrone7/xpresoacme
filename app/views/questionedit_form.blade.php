@@ -9,12 +9,12 @@
         </div>
     </div>
     <div class="portlet-body form">
-        <form class="form-horizontal" role="form" action="{{ URL::route('questionsave', empty($d->q->id) ? 0: $d->q->id) }}" method="post">
+        <form class="form-horizontal" role="form" id="addquestionform" action="{{ URL::route('questionsave', empty($d->q->id) ? 0: $d->q->id) }}" method="post">
             <div class="form-body">
                 <div class="form-group">
                     <label class="col-md-3 control-label">Question text</label>
                     <div class="col-md-9">
-                        {{ Form::textarea('question', $d->q->question, array('class' => 'form-control', 'rows' => '3')) }}
+                        {{ Form::textarea('question', $d->q->question, array('class' => 'form-control', 'rows' => '3', 'id' => 'question')) }}
                         <span class="help-block">Please enter full question text including question mark. Minimum 10 characters. </span>
                     </div>
                 </div>
