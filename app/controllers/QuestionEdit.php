@@ -14,11 +14,20 @@ class QuestionEdit extends AcmeController implements iMenu {
         $this->q=$q;
         return View::make('questionedit')->with('d', $this);
     }
+    public function deleteQuestion($id)
+    {
+        $q=Question::find($id);
+        if($q->locked()) return "Trying to delete locked question?!";
+        $q->metas()->delete();
+        $q->delete();
+        return Redirect::route("questions");
+    }
     public function saveQuestion($id)
     {
         $q=new Question();
         if($id>0) { //it is edit not save new, 0 is save new
             $q=Question::find($id);
+            if($q->locked()) return "Trying to save locked question?!";
         }
         $q->question=Input::get("question");
         $q->questiontype_id=Input::get("questiontype");
@@ -39,7 +48,8 @@ class QuestionEdit extends AcmeController implements iMenu {
             $q->metas()->saveMany($metas);
         });
 
-        var_dump(Input::all());
+        $this->q=$q;
+        return View::make('questionedit_save')->with('d', $this);
     }
     public function addQuestion()
     {

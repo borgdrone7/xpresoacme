@@ -16,4 +16,9 @@ class Question extends Eloquent {
     {
         return $this->hasMany('Meta');
     }
+
+    public function locked()
+    {
+        return (Useranswer::where("question_id", "=", $this->id)->count())>0;
+    }
 }

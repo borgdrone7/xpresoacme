@@ -31,6 +31,9 @@
                             <th>
                                 Edit
                             </th>
+                            <th>
+                                Delete
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -49,8 +52,12 @@
                                 {{ $q->required ? "Yes":"no" }}
                             </td>
                             <td>
-                                <a href="{{ URL::route('questionedit', $q->id) }}" class="btn default btn-xs red">
-                                    <i class="fa fa-edit"></i> Edit </a>
+                                <a href="{{ $q->locked() ? 'javascript:;':URL::route('questionedit', $q->id) }}" class="btn default btn-xs yellow">
+                                    <i class="fa fa-edit"></i> {{ $q->locked() ? "<i class='icon-lock'></i>":"Edit" }} </a>
+                            </td>
+                            <td>
+                                <a href="{{ $q->locked() ? 'javascript:;':URL::route('questiondelete', $q->id) }}" class="btn default btn-xs red">
+                                    <i class="fa fa-delete"></i> {{ $q->locked() ? "<i class='icon-lock'></i>":"Delete" }} </a>
                             </td>
                         </tr>
                         @endforeach

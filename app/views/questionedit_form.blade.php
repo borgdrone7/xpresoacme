@@ -1,7 +1,7 @@
 <div class="portlet box red " xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-gift"></i> Add/Edit question
+            <i class="fa fa-gift"></i> Add/Edit question {{$d->q->locked()}}
         </div>
         <div class="tools">
             <a href="" class="collapse">
