@@ -9,6 +9,8 @@ class UserForm extends AcmeController implements iMenu {
     public function showForm()
     {
         $this->u=Auth::user();
+        //insert any new questions added in the meantime
+        DB::insert('insert ignore into useranswers(user_id, question_id) select ?, id from questions', array($this->u->id));
         return View::make('user_form')->with('d', $this);
     }
     public function saveForm()
