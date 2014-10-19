@@ -19,6 +19,8 @@ class Question extends Eloquent {
 
     public function locked()
     {
-        return (Useranswer::where("question_id", "=", $this->id)->count())>0;
+        return count(DB::select('select * from useranswers where question_id=? and coalesce(meta_id, num, text, date) is not null', array($this->id)))>0;
+        //in case non answere questions count too, this may be used
+        //return (Useranswer::where("question_id", "=", $this->id)->count())>0;
     }
 }

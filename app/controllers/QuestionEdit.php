@@ -18,8 +18,13 @@ class QuestionEdit extends AcmeController implements iMenu {
     {
         $q=Question::find($id);
         if($q->locked()) return "Trying to delete locked question?!";
-        $q->metas()->delete();
-        $q->delete();
+
+        DB::transaction(function () use($q)
+        {
+            Useranswer::where("question_id","=",$q->id)->delete();
+            $q->metas()->delete();
+            $q->delete();
+        });
         return Redirect::route("questions");
     }
     public function saveQuestion($id)
