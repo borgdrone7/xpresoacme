@@ -15,7 +15,7 @@ class UserForm extends AcmeController implements iMenu {
     {
         $this->u=Auth::user();
         foreach($this->u->useranswers as $a) {
-            $input=Input::get($a->cn);
+            $input=Input::get($a->cn());
             $a->set_new_value($input);
             $a->save();
         }

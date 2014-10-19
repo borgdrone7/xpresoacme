@@ -37,7 +37,20 @@ class Useranswer extends Eloquent
     }
     public function set_new_value($value)
     {
-
+        $type=$this->type();
+        if($type==QUESTION_TYPE::TEXT) {
+            $this->text=$value;
+        } elseif ($type==QUESTION_TYPE::NUMBER) {
+            $this->num=$value;
+        } elseif ($type==QUESTION_TYPE::DATE) {
+            $this->date=new DateTime($value);
+        } elseif ($type==QUESTION_TYPE::DROPDOWN) {
+            $this->meta_id=$value;
+        } elseif ($type==QUESTION_TYPE::RADIO) {
+            $this->meta_id=$value;
+        } else {
+            throw new Exception("Unknown type in set_new_value()");
+        }
     }
 }
 
