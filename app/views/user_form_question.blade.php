@@ -23,14 +23,12 @@
                             {{ Form::select('questiontype', Meta::where('question_id', '=', $a->question_id)->orderBy('value', 'asc')->lists('value', 'id'), $a->meta_id, array('class' => 'form-control', 'id' => 'questiontype')) }}
                         @elseif ($a->question->questiontype->name == "Radio")
                             <div class="radio-list">
+                                @foreach($a->question->metas as $m)
                                 <label>
-                                    {{ Form::radio('name', 'value', true) }}
-                                    Test
+                                    {{ Form::radio('radio'.$m->id, $m->id, ($m->id==$a->meta_id) ? true:false) }}
+                                    {{$m->value}}
                                 </label>
-                                <label>
-                                    {{ Form::radio('name', 'value', true) }}
-                                    Test 2
-                                </label>
+                                @endforeach
                             </div>
                         @else
                             Unknown question type!
