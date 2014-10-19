@@ -7,8 +7,9 @@ class StatsColors extends AcmeController implements iMenu {
     }
     public function show()
     {
-        $this->u=Auth::user();
-        return View::make('user_overview')->with('d', $this);
+        $stats = DB::select('select sum(1) as num, value from useranswers,metas where useranswers.meta_id=metas.id and useranswers.question_id=? and meta_id is not null group by meta_id', array(8));
+        $this->stats=$stats;
+        return View::make('stats_colors')->with('d', $this);
     }
     public function __construct() {
         AcmeController::__construct();

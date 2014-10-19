@@ -8,7 +8,12 @@ class StatsResults extends AcmeController implements iMenu {
     public function show()
     {
         $this->u=Auth::user();
-        return View::make('user_overview')->with('d', $this);
+        return View::make('stats_results')->with('d', $this);
+    }
+    public function overview($id)
+    {
+        $this->u=User::find($id);
+        return View::make('stats_results_overview')->with('d', $this);
     }
     public function __construct() {
         AcmeController::__construct();
