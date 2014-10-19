@@ -58,7 +58,7 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`id`),
   KEY `FK_questions_questiontypes` (`questiontype_id`),
   CONSTRAINT `FK_questions_questiontypes` FOREIGN KEY (`questiontype_id`) REFERENCES `questiontypes` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (1,4,'Do you smoke?',1,0),(2,3,'What is your name?',1,0),(3,1,'When were you born?',1,0),(4,4,'Martial status?',1,0),(5,5,'Gender?',0,0),(6,4,'Nationality?',0,0);
+INSERT INTO `questions` VALUES (1,5,'Do you smoke?',1,0),(2,3,'What is your name?',1,0),(3,1,'When were you born?',1,0),(4,4,'Martial status?',1,0),(5,5,'Gender?',0,0),(6,4,'Nationality?',0,0),(7,2,'How many years of experience you have?',0,0);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,9 +115,10 @@ CREATE TABLE `useranswers` (
   UNIQUE KEY `filledformid_questionid` (`user_id`,`question_id`),
   KEY `FK_filledformslines_answerstructmetas` (`meta_id`),
   KEY `FK_filledformslines_questions` (`question_id`),
-  CONSTRAINT `FK_useranswers_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `FK_filledformslines_questions` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `FK_useranswers_questions` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`),
+  CONSTRAINT `FK_useranswers_metas` FOREIGN KEY (`meta_id`) REFERENCES `metas` (`id`),
+  CONSTRAINT `FK_useranswers_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +127,7 @@ CREATE TABLE `useranswers` (
 
 LOCK TABLES `useranswers` WRITE;
 /*!40000 ALTER TABLE `useranswers` DISABLE KEYS */;
-INSERT INTO `useranswers` VALUES (1,1,1,2,NULL,NULL,NULL),(2,1,2,NULL,NULL,'Amir Cicak',NULL),(3,1,3,NULL,NULL,NULL,'1977-07-26'),(4,1,4,4,NULL,NULL,NULL),(5,1,5,12,NULL,NULL,NULL),(6,1,6,14,NULL,NULL,NULL);
+INSERT INTO `useranswers` VALUES (1,1,1,16,NULL,NULL,NULL),(2,1,2,NULL,NULL,'Amir Cicak',NULL),(3,1,3,NULL,NULL,NULL,'1977-07-26'),(4,1,4,4,NULL,NULL,NULL),(5,1,5,12,NULL,NULL,NULL),(6,1,6,14,NULL,NULL,NULL),(7,1,7,NULL,18,NULL,NULL);
 /*!40000 ALTER TABLE `useranswers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-18 20:36:53
+-- Dump completed on 2014-10-19 13:46:45

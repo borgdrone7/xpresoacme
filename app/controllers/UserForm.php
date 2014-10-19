@@ -11,10 +11,16 @@ class UserForm extends AcmeController implements iMenu {
         $this->u=Auth::user();
         return View::make('user_form')->with('d', $this);
     }
-    public function showView()
+    public function saveForm()
     {
         $this->u=Auth::user();
-        return View::make('user_view')->with('d', $this);
+        foreach($this->u->useranswers as $a) {
+            $input=Input::get($a->cn);
+            $a->set_new_value($input);
+            $a->save();
+        }
+        var_dump(Input::all());
+        return Redirect::route('user overview');
     }
     public function __construct() {
         AcmeController::__construct();
