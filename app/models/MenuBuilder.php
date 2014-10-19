@@ -7,10 +7,36 @@ use Illuminate\Support\Facades\Session;
  * Date: 10/16/14
  * Time: 3:50 PM
  */
+class ADMIN_MENU
+{
+    const LANDING = "Landing";
+    const QUESTIONS = "Questions";
+    const ADD_QUESTION = "Questions add";
+    const LIST_QUESTION = "Questions list";
+    const STATS = "Stats";
+    const USERLANDING = "User Landing";
+    const STATS_OVERVIEW = "Stats results";
+    const STATS_COLORS = "Stats colors";
+    const STATS_NATIONALITY = "Stats nationality";
+}
+class USER_MENU
+{
+    const LANDING = "Landing";
+    const QUESTIONNAIRE = "Questionnaire";
+    const OVERVIEW = "OVERVIEW";
+    const RESET = "Reset questionnaire";
+    const LOGIN = "Login";
+    const LOGOUT = "Logout";
+}
 
 class MenuBuilder {
 
     public static function getAdminMenu($current) {
+
+        $stats=new MenuItem(ADMIN_MENU::STATS, "Stats", "icon-bar-chart");
+        $stats->addSubmenu(new MenuItem(ADMIN_MENU::STATS_OVERVIEW, "Questioonnaire results", "icon-star", URL::route('statsresults')));
+        $stats->addSubmenu(new MenuItem(ADMIN_MENU::STATS_COLORS, "Colors", "icon-star", URL::route('statscolors')));
+        $stats->addSubmenu(new MenuItem(ADMIN_MENU::STATS_NATIONALITY, "Nationality status", "icon-star", URL::route('statsnationality')));
 
         $questions=new MenuItem(ADMIN_MENU::QUESTIONS, "Questions", "icon-question");
         $questions->addSubmenu(new MenuItem(ADMIN_MENU::ADD_QUESTION, "Add question", "icon-star", URL::route('questionadd')));
@@ -19,7 +45,7 @@ class MenuBuilder {
         $menu=[];
         $menu[]=new MenuItem(ADMIN_MENU::LANDING, "Landing page", "icon-home", URL::route('landing'));
         $menu[]=$questions;
-        $menu[]=new MenuItem(ADMIN_MENU::STATS, "Stats", "icon-bar-chart");
+        $menu[]=$stats;
         $menu[]=new MenuItem(ADMIN_MENU::USERLANDING, "Users panel", "icon-user", URL::route('user landing')); //TODO: we can avoid last param by using USER_MENU::LANDING in routes to define name
 
         self::selectMenu($menu, $current);
