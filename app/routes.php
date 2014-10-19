@@ -20,8 +20,8 @@ Route::post('/questionsave/{id}', array('as' => 'questionsave', 'uses' => 'Quest
 
 //user routes
 Route::get('/user', array('as' => 'user landing', 'uses' => 'UserLanding@show'));
-Route::get('/user/form', array('as' => 'user form', 'uses' => 'Questions@listQuestions'));
-Route::get('/user/view', array('as' => 'user view', 'uses' => 'QuestionEdit@addQuestion'));
+Route::get('/user/form', array('as' => 'user form', 'uses' => 'UserForm@showForm'));
+Route::get('/user/overview', array('as' => 'user overview', 'uses' => 'UserOverview@showOverview'));
 Route::get('/user/reset', array('as' => 'user reset', 'uses' => 'QuestionEdit@editQuestion'));
 Route::get('/user/login', array('as' => 'login', 'uses' => 'UserLogin@show'));
 Route::post('/user/login', array('as' => 'login attempt', 'uses' => 'UserLogin@attempt'));

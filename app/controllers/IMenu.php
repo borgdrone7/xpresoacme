@@ -19,7 +19,7 @@ class USER_MENU
 {
     const LANDING = "Landing";
     const QUESTIONNAIRE = "Questionnaire";
-    const RESULTS = "View results";
+    const OVERVIEW = "OVERVIEW";
     const RESET = "Reset questionnaire";
     const LOGIN = "Login";
     const LOGOUT = "Logout";

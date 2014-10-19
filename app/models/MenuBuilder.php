@@ -32,8 +32,8 @@ class MenuBuilder {
         $menu=[];
         $menu[]=new MenuItem(USER_MENU::LANDING, "Landing page", "icon-home", URL::route('user landing')); //TODO: we can avoid last param by using USER_MENU::LANDING in routes to define name
         $menu[]=new MenuItem(USER_MENU::QUESTIONNAIRE, "Questionnaire", "icon-docs", URL::route('user form'));
-        $menu[]=new MenuItem(USER_MENU::RESULTS, "View questionnaire result", "icon-list", URL::route('user view'));
-        $menu[]=new MenuItem(USER_MENU::RESET, "Reset questionnaire", "icon-trash", URL::route('user reset'));
+        $menu[]=new MenuItem(USER_MENU::OVERVIEW, "Overview", "icon-list", URL::route('user overview'));
+        //$menu[]=new MenuItem(USER_MENU::RESET, "Reset questionnaire", "icon-trash", URL::route('user reset'));
         if(!Auth::check()) {
             $menu[]=new MenuItem(USER_MENU::LOGIN, "Login", "icon-login", URL::route('login'));
         } else {
